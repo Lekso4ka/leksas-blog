@@ -6,7 +6,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'docs'),//путь куда будет собираться наш проект
 		filename: "main.js",// имя нашего бандла
-		publicPath: "/leksas-blog/"
+		// publicPath: "/leksas-blog/"
 	},
 	devServer: {
 		static: path.resolve(__dirname, './docs'), // путь, куда "смотрит" режим разработчика

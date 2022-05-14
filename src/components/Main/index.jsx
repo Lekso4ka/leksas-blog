@@ -10,14 +10,16 @@ import {Ctx} from "../../context";
 
 export default () => {
     const {userId, userToken} = useContext(Ctx);
+    const path = "/leksas-blog/";
+    // const path = "/";
     return <main className="main-container">
        <Routes>
-           <Route path="/" element={<Home/>}/>
-           <Route path="/posts" element={<Posts/>}/>
-           <Route path="/add" element={<AddPost/>}/>
-           <Route path="/profile" element={<Profile/>}/>
-           <Route path="/posts/:id" element={<Post/>}/>
-           <Route path="/author/:id" element={<Author/>}/>
+           <Route path={path} element={<Home/>}/>
+           <Route path={`${path}posts`} element={<Posts/>}/>
+           <Route path={`${path}add`} element={<AddPost/>}/>
+           <Route path={`${path}profile`} element={<Profile/>}/>
+           <Route path={`${path}posts/:id`} element={<Post/>}/>
+           <Route path={`${path}author/:id`} element={<Author/>}/>
        </Routes>
     </main>
 }
