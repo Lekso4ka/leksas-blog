@@ -1,0 +1,6 @@
+.header-container__navigation {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 1.5rem;
+}

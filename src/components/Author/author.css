@@ -1,0 +1,75 @@
+.author {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: auto 1fr;
+    gap: 40px;
+}
+.author__info {
+    display: grid;
+    gap: 4px;
+}
+.author__info p {
+    color: #777;
+    margin-bottom: 10px;
+}
+.author__info a {
+    justify-self: flex-start;
+}
+.author__info a:hover {
+    color: blueviolet;
+}
+.author__pic {
+    width: 300px;
+    grid-row-end: span 2;
+}
+.author__menu {
+    display: flex;
+    border-bottom: 1px solid;
+}
+.author__menu>div {
+    border: 1px solid #0004;
+    border-bottom: none;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    padding: 6px 10px;
+}
+.author__menu>.active {
+    border-color: #000;
+}
+.author__block {
+    display: none;
+    padding: 30px 0 40px;
+    gap: 30px;
+
+}
+.author__block.active {
+    display: grid;
+}
+.author__content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.author__comment {
+    display: grid;
+    padding: 20px;
+    box-shadow: 0 0 5px 0 #0004;
+    border-radius: 10px;
+    gap: 20px;
+}
+.author__comment_text {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+.author__comment_text i {
+    align-self: flex-start;
+}
+.author__comment>:last-child {
+    color: #777;
+}
+.author__comment a:hover {
+    color: blueviolet;
+}

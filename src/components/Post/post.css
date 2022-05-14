@@ -1,0 +1,140 @@
+.post-container {
+    display: grid;
+    grid-template-columns: 1fr 500px;
+    gap: 40px;
+}
+.post__pic {
+    height: 300px;
+    background-size: contain;
+    background-position: right top;
+    background-repeat: no-repeat;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+.post__author {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.post__author a:hover {
+    color: blueviolet;
+}
+.post__author-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: 1px solid blueviolet;
+}
+.post__tags {
+    display: flex;
+    gap: 10px;
+}
+.post__tags>span {
+    background: blueviolet;
+    color: #fff;
+    display: block;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+.post__text p {
+    line-height: 1.5rem;
+}
+.post__feedback {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 1.2rem;
+}
+.post__feedback p {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+.post__comments {
+    grid-column-end: span 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.post__comments h2 {
+    grid-column-end: span 4;
+    margin: 0;
+}
+.comment {
+    padding: 20px;
+    box-shadow: 0 0 5px 0 #0004;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 30px auto 30px;
+    gap: 20px;
+    position: relative;
+}
+.comment__name {
+    font-size: 1.5rem;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.comment__name a:hover {
+    color: blueviolet;
+}
+.comment__name_little {
+    font-size: 1rem;
+}
+.comment__name_little>i {
+    font-size: 1.5rem;
+}
+.comment__text {
+    color: #777;
+}
+form {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto 30px;
+    gap: 20px;
+    grid-row-end: span 2;
+}
+textarea {
+    box-sizing: border-box;
+    border: 1px solid #777;
+    padding: 10px;
+    border-radius: 10px;
+    min-height: 60px;
+    resize: vertical;
+    outline: none;
+    font: inherit;
+}
+textarea:focus {
+    border-color: blueviolet;
+}
+button {
+    background: blueviolet;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.comment__date {
+    align-self: flex-end;
+    border-top: 1px solid;
+    padding-top: calc(29px - 1.2rem);
+}
+[data-id] {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+[data-id]:hover {
+    color: blueviolet;
+}
+.post__text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
