@@ -4,3 +4,13 @@
     align-items: center;
     font-size: 1.5rem;
 }
+.logo {
+    font-size: 1.5rem;
+    font-weight: 500;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.logo i {
+    font-size: 2rem;
+}

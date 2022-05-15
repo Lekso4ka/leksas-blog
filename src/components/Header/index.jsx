@@ -6,7 +6,7 @@ import "./header.css";
 export default () => {
     const {userId, setModalActive, path} = useContext(Ctx);
     return <header className="header-container">
-        <Link to={path}>Logo</Link>
+        <Link to={path} className="logo"><i className="bi bi-blockquote-right"/>Super Blog</Link>
         <nav className="header-container__navigation">
             {
                 userId && <>
