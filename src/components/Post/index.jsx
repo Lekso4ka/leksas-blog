@@ -36,7 +36,7 @@ export default () => {
                     api.getUser(user)
                         .then(res => res.json())
                         .then(data => {
-                            setLikes(prev => [...prev, data.name]);
+                            setLikes(prev => prev.includes(data.name).length  ? prev : [...prev, data.name]);
                         });
                 })
             }
