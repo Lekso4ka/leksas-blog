@@ -16,6 +16,7 @@ export const Ctx = createContext({
     setFavorites: () => {},
     setModalActive: () => {},
     setPopupActive: () => {},
+    path: "/",
     search: (posts = this.posts, text = this.searchText) => {
         return posts.filter(p => p.title.toLowerCase().includes(text.toLowerCase()));
     }

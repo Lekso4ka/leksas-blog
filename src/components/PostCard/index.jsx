@@ -27,6 +27,7 @@ export default (props) => {
             })
     }
     const openCard = () => {
+        console.log("opn")
         navigate(`${path}posts/${props._id}`);
     }
     return <>

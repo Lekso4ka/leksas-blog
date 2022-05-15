@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 import {Ctx} from "../../context";
 import "./post.css";
 
