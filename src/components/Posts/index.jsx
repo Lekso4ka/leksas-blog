@@ -5,7 +5,7 @@ import "./posts.css"
 import {Link} from "react-router-dom";
 
 export default () => {
-    const {posts, userId, favorites, setFavorites} = useContext(Ctx);
+    const {posts, userId, favorites, setFavorites, path} = useContext(Ctx);
     const [authors, setAuthors] = useState([]);
     const [tags, setTags] = useState([]);
     const [fPosts, filterPosts] = useState(posts);
@@ -86,7 +86,7 @@ export default () => {
             <div className="posts-filter__authors">
                 {authors.map(a => <div key={a._id} onClick={filterByAuthor}>
                     {a.name}
-                    <Link to={`/author/${a._id}`}>
+                    <Link to={`${path}author/${a._id}`}>
                         <i className="bi bi-box-arrow-in-right" title="На страницу автора"/>
                     </Link>
                 </div>)}

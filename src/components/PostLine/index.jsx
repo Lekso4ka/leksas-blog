@@ -5,7 +5,7 @@ import defaultImg from "../../assets/image.svg"
 import {Ctx} from "../../context";
 
 export default (props) => {
-    const {api, userId, setPosts} = useContext(Ctx);
+    const {api, userId, setPosts, path} = useContext(Ctx);
     const [post, setPost] = useState(props);
     const [like, setLike] = useState(false);
     useEffect(() => {
@@ -34,7 +34,7 @@ export default (props) => {
                 <p>{post.text && post.text.slice(0, 50) + (post.text.length >= 50 ? "..." : "")}</p>
                 <div className="post-line__info">
                     <p>
-                        {post.author && <Link to={`/author/${post.author._id}`} className="post-line__author">{post.author.name}</Link>}
+                        {post.author && <Link to={`${path}author/${post.author._id}`} className="post-line__author">{post.author.name}</Link>}
                         {new Date(post.created_at || null).toLocaleDateString()}
                     </p>
                     <div className="post-line__feedback">
@@ -49,7 +49,7 @@ export default (props) => {
                 </div>
             </div>
             <div className="post-line__read">
-                <Link to={"/posts/" + props._id}>Читать дальше</Link>
+                <Link to={`${path}posts/${props._id}`}>Читать дальше</Link>
             </div>
         </div>
     </>

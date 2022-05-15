@@ -5,7 +5,7 @@ import defaultImg from "../../assets/image.svg"
 import {Ctx} from "../../context";
 
 export default (props) => {
-    const {api, userId, setPosts} = useContext(Ctx);
+    const {api, userId, setPosts, path} = useContext(Ctx);
     const [post, setPost] = useState(props);
     const [like, setLike] = useState(false);
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default (props) => {
             })
     }
     const openCard = () => {
-        navigate(`/posts/${props._id}`);
+        navigate(`${path}posts/${props._id}`);
     }
     return <>
         <div className="post-card">
@@ -40,7 +40,7 @@ export default (props) => {
                     {post.text && post.text.slice(0, 40) + (post.text.length >= 40 ? "..." : "")}
                 </div>
                 <div className="post-card__info">
-                        {post.author && <Link to={`/author/${post.author._id}`} className="post-card__author">{post.author.name}</Link>}
+                        {post.author && <Link to={`${path}author/${post.author._id}`} className="post-card__author">{post.author.name}</Link>}
                 </div>
                 <div className="post-card__info">
                     <p>{new Date(post.created_at || null).toLocaleDateString()}</p>

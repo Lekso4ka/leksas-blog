@@ -46,7 +46,8 @@ export default () => {
             setSearchText: setText,
             setModalActive: setModalActive,
             setPopupActive: setPopupActive,
-            api: api
+            api: api,
+            path:"/leksas-blog/"
         }}>
             <Header/>
             <Main/>

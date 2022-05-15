@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from "react";
 import {useNavigate, Link} from "react-router-dom";
 import {Ctx} from "../../context";
 import "./profile.css";
-import Post from "../Post";
 import PostLine from "../PostLine";
 
 export default () => {
@@ -20,13 +19,13 @@ export default () => {
     const [favorites, setFavorites] = useState([]);
     const [authorPosts, setAuthorPosts] = useState([]);
 
-    const {setToken, setUser, api, userId, posts} = useContext(Ctx);
+    const {setToken, setUser, api, userId, posts, path} = useContext(Ctx);
     const logout = () => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         setToken("");
         setUser("");
-        navigate("/");
+        navigate(path);
     }
     useEffect(() => {
         api.getUser()
@@ -139,7 +138,7 @@ export default () => {
                                 <i className="bi bi-chat-left-quote"/>
                                 {c.text}
                             </p>
-                            <p>К посту: «<Link to={`/posts/${c.post._id}`}>{c.post.title}</Link>»</p>
+                            <p>К посту: «<Link to={`${path}posts/${c.post._id}`}>{c.post.title}</Link>»</p>
                             <p>{new Date(c.created_at).toLocaleString()}</p>
                         </div>)
                     }

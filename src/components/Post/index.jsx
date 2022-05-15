@@ -1,10 +1,10 @@
 import React, {useContext, useEffect, useState} from "react";
-import {useParams, Link} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {Ctx} from "../../context";
 import "./post.css";
 
 export default () => {
-    const {api, userId, setPosts} = useContext(Ctx);
+    const {api, userId, setPosts, path} = useContext(Ctx);
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
@@ -74,7 +74,7 @@ export default () => {
                 <h1>{post.title || ""}</h1>
                 {post.author && <div className="post__author">
                     <div className="post__author-pic" style={{backgroundImage: `url(${post.author.avatar})`}}/>
-                    <Link to={post.author._id === userId ? "/profile" : `/author/${post.author._id}`}>{post.author.name}</Link>
+                    <Link to={post.author._id === userId ? `${path}profile` : `${path}author/${post.author._id}`}>{post.author.name}</Link>
                 </div>}
                 <p>{post.text || ""}</p>
                 {post.tags && post.tags.length > 0 && <div className="post__tags">
@@ -100,7 +100,7 @@ export default () => {
                 <h2>Комментарии к посту</h2>
                 {comments && comments.length > 0 && comments.map(c => <div className="comment" key={c._id}>
                     <div className="comment__name"><i className="bi bi-chat"/>
-                        <Link to={c.author._id === userId ? "/profile" : `/author/${c.author._id}`}>{c.author.name}</Link>
+                        <Link to={c.author._id === userId ? `${path}profile` : `${path}author/${c.author._id}`}>{c.author.name}</Link>
                     </div>
                     <div className="comment__text">{c.text}</div>
                     <div className="comment__date">{new Date(c.created_at).toLocaleString()}</div>

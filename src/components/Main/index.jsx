@@ -9,9 +9,7 @@ import Author from "../Author";
 import {Ctx} from "../../context";
 
 export default () => {
-    const {userId, userToken} = useContext(Ctx);
-    const path = "/leksas-blog/";
-    // const path = "/";
+    const {path} = useContext(Ctx);
     return <main className="main-container">
        <Routes>
            <Route path={path} element={<Home/>}/>

@@ -12,7 +12,7 @@ export default () => {
     const [comments, setComments] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [authorPosts, setAuthorPosts] = useState([]);
-    const {api, posts} = useContext(Ctx);
+    const {api, posts, path} = useContext(Ctx);
     useEffect(() => {
         api.getUser(id)
             .then(res => res.json())
@@ -82,7 +82,7 @@ export default () => {
                             <i className="bi bi-chat-left-quote"/>
                             {c.text}
                         </p>
-                        <p>К посту: «<Link to={`/posts/${c.post._id}`}>{c.post.title}</Link>»</p>
+                        <p>К посту: «<Link to={`${path}posts/${c.post._id}`}>{c.post.title}</Link>»</p>
                         <p>{new Date(c.created_at).toLocaleString()}</p>
                     </div>)
                 }
