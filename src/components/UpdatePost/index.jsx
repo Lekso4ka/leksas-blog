@@ -1,13 +1,26 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
+import {useParams, useNavigate} from "react-router-dom";
 import {Ctx} from "../../context";
-import "./post.css";
+// import "./post.css";
 export default () => {
-    const {api, setPosts} = useContext(Ctx);
+    const {api, setPosts, path} = useContext(Ctx);
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [img, setImg] = useState("");
     const [tags, setTags] = useState([]);
     const [tag, setTag] = useState("");
+    const {id} = useParams();
+    const navigate = useNavigate();
+    useEffect(() => {
+        api.getPost(id)
+            .then(res => res.json())
+            .then(ans => {
+                setTitle(ans.title);
+                setText(ans.text);
+                setImg(ans.image);
+                setTags(ans.tags);
+            })
+    }, []);
     const addTag = e => {
         let text = e.target.value;
         let last = text[text.length - 1]
@@ -24,7 +37,7 @@ export default () => {
         let text = e.target.textContent;
         setTags(prev => prev.filter(t => t !== text));
     }
-    const addPost = e => {
+    const updatePost = e => {
         e.preventDefault();
         if (title && text) {
             const body = {
@@ -37,20 +50,14 @@ export default () => {
             if (tags.length) {
                 body.tags = tag ? [...tags, tag] : tags;
             }
-            console.log(body);
-            api.addPost(body)
+            api.updatePost(id, body)
                 .then(res => res.json())
                 .then(ans => {
-                    setPosts(prev => [...prev, ans].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)))
-                    setTags([]);
-                    setTag("");
-                    setImg("");
-                    setTitle("");
-                    setText("");
+                    setPosts(prev => [prev.filter(p => p._id !== id), ans].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)))
                 })
         }
     }
-    return <form className="post-form" onSubmit={addPost}>
+    return <form className="post-form" onSubmit={updatePost}>
         <h1>Новый пост</h1>
         <div className="form__img" style={{backgroundImage: img && `url(${img})`}}>
             {!img && <i className="bi bi-image"/>}
@@ -72,7 +79,8 @@ export default () => {
                 {tags.map(tg => <span className="form__tag" key={tg} onClick={deleteTag} title="удалить">{tg}</span>)}
             </div>
             <div className="form__buttons">
-                <button className="form__btn" type="submit">Создать пост</button>
+                <button className="form__btn" type="button" onClick={() => navigate(`${path}posts/${id}`)}>Отменить</button>
+                <button className="form__btn" type="submit">Обновить</button>
             </div>
         </div>
         <div className="form__line">

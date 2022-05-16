@@ -59,3 +59,12 @@
 .post-line__read a:hover {
     color: blueviolet;
 }
+.edit {
+    position: absolute;
+    right: 40px;
+    font-size: 1.5rem;
+    top: 10px;
+}
+.edit:hover {
+    color: blueviolet;
+}

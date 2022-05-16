@@ -1,11 +1,6 @@
 /*
-* //ПРО ПОСТЫ
-GET https://api.react-learning.ru/posts/search/?query=<строка фильтрации по title> // для поиска постов
-
-GET https://api.react-learning.ru/posts/paginate?page=<номер страницы>&limit=<число ограничивающее вывод на страницу>&query=<строка фильтрации по title> //добавление навигации
-
-PATCH https://api.react-learning.ru/posts/:postId //редактирование поста по id
-
+    GET https://api.react-learning.ru/posts/search/?query=<строка фильтрации по title> // для поиска постов
+    GET https://api.react-learning.ru/posts/paginate?page=<номер страницы>&limit=<число ограничивающее вывод на страницу>&query=<строка фильтрации по title> //добавление навигации
 * */
 
 export default class Api {
@@ -109,6 +104,16 @@ export default class Api {
             body: JSON.stringify(body)
         })
     }
+    updatePost(id, body) {
+        return fetch(`${this.path}posts/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "authorization" : `Bearer ${this.token}`
+            },
+            body: JSON.stringify(body)
+        })
+    }
     getComments() {
         return fetch(`${this.path}posts/comments/`, {
             headers: {
@@ -149,5 +154,4 @@ export default class Api {
             }
         })
     }
-
 }

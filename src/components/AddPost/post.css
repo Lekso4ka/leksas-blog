@@ -73,6 +73,10 @@ input:focus {
     display: block;
     padding: 8px 12px;
     height: 40px;
+}
+.form__buttons {
+    display: flex;
+    gap: 20px;
     justify-self: flex-end;
     align-self: flex-end;
 }

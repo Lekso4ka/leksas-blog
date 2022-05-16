@@ -61,6 +61,7 @@ export default (props) => {
             <div className="post-line__read">
                 <Link to={`${path}posts/${props._id}`}>Читать дальше</Link>
             </div>
+            {post.author._id === userId && <Link to={`${path}update/${post._id}`} className="edit"><i className="bi bi-pencil-square"/></Link>}
             {post.author._id === userId && <i className="bi bi-x-circle" onClick={deletePost} data-id={post._id}/>}
         </div>
     </>

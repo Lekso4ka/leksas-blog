@@ -5,6 +5,7 @@ import Profile from "../Profile";
 import Posts from "../Posts";
 import Post from "../Post";
 import AddPost from "../AddPost";
+import UpdatePost from "../UpdatePost";
 import Author from "../Author";
 import {Ctx} from "../../context";
 
@@ -17,6 +18,7 @@ export default () => {
            <Route path={`${path}add`} element={<AddPost/>}/>
            <Route path={`${path}profile`} element={<Profile/>}/>
            <Route path={`${path}posts/:id`} element={<Post/>}/>
+           <Route path={`${path}update/:id`} element={<UpdatePost/>}/>
            <Route path={`${path}author/:id`} element={<Author/>}/>
        </Routes>
     </main>
