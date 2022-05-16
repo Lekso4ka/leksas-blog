@@ -6,6 +6,7 @@
     box-shadow: 0 0 5px 0 #0004;
     border-radius: 10px;
     gap: 30px;
+    position: relative;
 }
 .post-line__pic {
     background-size: cover;

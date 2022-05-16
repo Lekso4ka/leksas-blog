@@ -1,6 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 import {Ctx} from "../../context";
+import usePagination from "../../hooks/usePagination";
 import PostLine from "../PostLine";
+import Pagination from "../Pagination";
 import "./posts.css"
 import {Link} from "react-router-dom";
 
@@ -12,6 +14,9 @@ export default () => {
     const [filter, setFilter] = useState("");
     const [fType, setFType] = useState("");
     const [sort, setSort] = useState("new");
+    const [page, setPage] = useState(1);
+    const data = usePagination(fPosts, 10);
+    console.log("mp", data.maxPage);
     const getNumber = () => Math.floor(Math.random() * 256);
     const getColor = (a = 20) => {
         return `rgba(${getNumber()},${getNumber()},${getNumber()},${a/100})`;
@@ -67,19 +72,24 @@ export default () => {
             }
         });
         filterPosts(filter);
+        setPage(1);
+        data.jump(1);
     }
     const filterByAuthor = (e) => {
         let text = e.target.textContent;
         setFType("Посты автора");
         setFilter(text);
         filterPosts(posts.filter(p => p.author.name === text));
+        setPage(1);
+        data.jump(1);
     }
     const removeFilter = () => {
         setFType("");
         setFilter("");
         filterPosts([...posts]);
+        setPage(1);
+        data.jump(1);
     }
-
     return <div className="container">
         <div className="posts-filter">
             <h2>Авторы</h2>
@@ -103,13 +113,14 @@ export default () => {
                 <i className={`bi ${sort === "old" ? "bi-calendar-minus-fill" : "bi-calendar-minus"}`} title="Старые посты" onClick={() => setSort("old")}/>
                 <i className={`bi ${sort === "like" ? "bi-calendar-heart-fill" : "bi-calendar-heart"}`} title="Популярные посты" onClick={() => setSort("like")} />
             </div>
-            {fPosts.sort((a, b) => {
+            {data.current().sort((a, b) => {
                 switch(sort) {
                     case "new": return new Date(b.created_at) - new Date(a.created_at)
                     case "old": return new Date(a.created_at) - new Date(b.created_at)
                     case "like": return (b.likes.length + b.comments.length) - (a.likes.length + a.comments.length)
                 }
             }).map(post => <PostLine key={post._id} {...post}/>)}
+            <Pagination page={page} changePage={setPage} hook={data}/>
         </div>
     </div>
 }

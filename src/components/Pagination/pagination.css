@@ -1,0 +1,17 @@
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.pagination .page {
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.page.active {
+    color: blueviolet;
+}

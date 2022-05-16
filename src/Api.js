@@ -5,9 +5,6 @@ GET https://api.react-learning.ru/posts/search/?query=<строка фильтр
 GET https://api.react-learning.ru/posts/paginate?page=<номер страницы>&limit=<число ограничивающее вывод на страницу>&query=<строка фильтрации по title> //добавление навигации
 
 PATCH https://api.react-learning.ru/posts/:postId //редактирование поста по id
-DELETE https://api.react-learning.ru/posts/:postId //удаление поста по id
-
-GET https://api.react-learning.ru/posts/comments/ // получение всех комментариев
 
 * */
 
@@ -89,6 +86,14 @@ export default class Api {
     }
     getPost(id) {
         return fetch(`${this.path}posts/${id}`, {
+            headers: {
+                "authorization" : `Bearer ${this.token}`
+            }
+        })
+    }
+    deletePost(id) {
+        return fetch(`${this.path}posts/${id}`, {
+            method: "delete",
             headers: {
                 "authorization" : `Bearer ${this.token}`
             }

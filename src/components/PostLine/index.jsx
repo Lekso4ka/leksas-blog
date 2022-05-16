@@ -24,6 +24,16 @@ export default (props) => {
                 setPosts(prev => [...prev.filter(p => p._id !== ans._id), ans].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)));
             })
     }
+    const deletePost = (e) => {
+        let del = confirm("Вы действительно хотите удалить пост?");
+        if (del) {
+            api.deletePost(e.target.getAttribute("data-id"))
+                .then(res => res.json())
+                .then(ans => {
+                    setPosts(prev => prev.filter(p => p._id !== ans._id));
+                })
+        }
+    }
     return <>
         <div className="post-line">
             <div className="post-line__pic" style={{backgroundImage: post.image && `url(${post.image})`}}>
@@ -51,6 +61,7 @@ export default (props) => {
             <div className="post-line__read">
                 <Link to={`${path}posts/${props._id}`}>Читать дальше</Link>
             </div>
+            {post.author._id === userId && <i className="bi bi-x-circle" onClick={deletePost} data-id={post._id}/>}
         </div>
     </>
 }
