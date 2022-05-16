@@ -7,7 +7,7 @@ import "./posts.css"
 import {Link} from "react-router-dom";
 
 export default () => {
-    const {posts, userId, favorites, setFavorites, path} = useContext(Ctx);
+    const {posts, userId, path} = useContext(Ctx);
     const [authors, setAuthors] = useState([]);
     const [tags, setTags] = useState([]);
     const [fPosts, filterPosts] = useState(posts);
@@ -16,7 +16,6 @@ export default () => {
     const [sort, setSort] = useState("new");
     const [page, setPage] = useState(1);
     const data = usePagination(fPosts, 10);
-    console.log("mp", data.maxPage);
     const getNumber = () => Math.floor(Math.random() * 256);
     const getColor = (a = 20) => {
         return `rgba(${getNumber()},${getNumber()},${getNumber()},${a/100})`;
@@ -25,12 +24,6 @@ export default () => {
         let arr = [];
         let tg = [];
         posts.forEach(post => {
-            if (post.likes.includes(userId)) {
-                let fav = favorites.filter(fav => fav._id === post._id);
-                if (!fav.length)  {
-                    setFavorites(prev => [...prev, post]);
-                }
-            }
             if (!arr.filter(el => el._id === post.author._id).length) {
                 if (post.author.name !== "Иван Иванов") {
                     arr.push(post.author);
@@ -57,7 +50,7 @@ export default () => {
         });
         setAuthors(arr);
         setTags(tg);
-        filterPosts([...posts]);
+        fPosts.length === 0 && filterPosts([...posts]);
     }, [posts])
     const filterByTag = (e) => {
         let text = e.target.textContent
@@ -113,13 +106,7 @@ export default () => {
                 <i className={`bi ${sort === "old" ? "bi-calendar-minus-fill" : "bi-calendar-minus"}`} title="Старые посты" onClick={() => setSort("old")}/>
                 <i className={`bi ${sort === "like" ? "bi-calendar-heart-fill" : "bi-calendar-heart"}`} title="Популярные посты" onClick={() => setSort("like")} />
             </div>
-            {data.current().sort((a, b) => {
-                switch(sort) {
-                    case "new": return new Date(b.created_at) - new Date(a.created_at)
-                    case "old": return new Date(a.created_at) - new Date(b.created_at)
-                    case "like": return (b.likes.length + b.comments.length) - (a.likes.length + a.comments.length)
-                }
-            }).map(post => <PostLine key={post._id} {...post}/>)}
+            {data.current(sort).map(post => <PostLine key={post._id} {...post}/>)}
             <Pagination page={page} changePage={setPage} hook={data}/>
         </div>
     </div>

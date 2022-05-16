@@ -11,9 +11,19 @@ export default (data, count) => {
     const jump = (page) => {
         setPage(Math.min(Math.max(1, page), maxPage));
     }
-    const current = () => {
+    const current = (sort = "new") => {
         const start = (page - 1) * count;
         const end = start + count;
+        data.sort((a, b) => {
+            switch (sort) {
+                case "new":
+                    return new Date(b.created_at) - new Date(a.created_at)
+                case "old":
+                    return new Date(a.created_at) - new Date(b.created_at)
+                case "like":
+                    return (b.likes.length + b.comments.length) - (a.likes.length + a.comments.length)
+            }
+        });
         return data.slice(start, end);
     }
     return {page, maxPage, current, next, previous, jump}
