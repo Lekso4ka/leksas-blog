@@ -8,7 +8,7 @@ export default () => {
     const {userId, setModalActive, path} = useContext(Ctx);
     return <header className="header-container">
         <Link to={path} className="logo"><i className="bi bi-blockquote-right"/>Super Blog</Link>
-        <Search/>
+        {userId && <Search/>}
         <nav className="header-container__navigation">
             {
                 userId && <>
