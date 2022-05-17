@@ -8,10 +8,12 @@ import AddPost from "../AddPost";
 import UpdatePost from "../UpdatePost";
 import Author from "../Author";
 import {Ctx} from "../../context";
+import Search from "../Search";
 
 export default () => {
     const {path} = useContext(Ctx);
     return <main className="main-container">
+        {/*<Search/>*/}
        <Routes>
            <Route path={path} element={<Home/>}/>
            <Route path={`${path}posts`} element={<Posts/>}/>

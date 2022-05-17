@@ -16,9 +16,9 @@ export default () => {
     const [sort, setSort] = useState("new");
     const [page, setPage] = useState(1);
     const data = usePagination(fPosts, 10);
-    const getNumber = () => Math.floor(Math.random() * 256);
+    const getNumber = (max = 256, min = 0) => Math.floor((Math.random() * (max - min)) + min);
     const getColor = (a = 20) => {
-        return `rgba(${getNumber()},${getNumber()},${getNumber()},${a/100})`;
+        return `rgba(${getNumber(200,100)},${getNumber(100, 0)},${getNumber(256,250)},${a/100})`;
     }
     useEffect(() => {
         let arr = [];

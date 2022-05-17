@@ -1,0 +1,24 @@
+.banner {
+    height: 400px;
+    background-image: linear-gradient(to top right, #fff8, #fff2), url(../../assets/banner.jpeg);
+    background-repeat: no-repeat;
+    width: 100vw;
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    padding: 0 calc(50vw - 600px);
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+.banner h1 {
+    font-size: 6rem;
+}
+.banner p {
+    font-size: 2rem;
+}

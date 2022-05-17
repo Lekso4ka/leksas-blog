@@ -33,6 +33,7 @@ main {
     -webkit-backdrop-filter: blur(1px);
     backdrop-filter: blur(1px);
     overflow: auto;
+    position: relative;
 }
 footer {
     width: 100vw;
@@ -44,6 +45,11 @@ footer {
     background-color: #c9a8e5;
     padding: 0 calc(50vw - 600px);
     box-sizing: border-box;
+}
+.footer-author {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 h1, h2, h3, p {
     margin: 0;

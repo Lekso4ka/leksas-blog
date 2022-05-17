@@ -16,18 +16,6 @@ export default () => {
         setFavorites(posts.filter(post => post.likes.includes(userId)));
     }, [posts]);
     return <div className="home-container">
-        {userPosts.length > 0 && <div className="main-line">
-            <h2>Мои посты</h2>
-            <div className="main-posts">
-                {userPosts.slice(0, 3).map(post => <PostCard key={post._id} {...post}/>)}
-            </div>
-        </div>}
-        {favorites.length > 0 && <div className="main-line">
-            <h2>Любимые посты</h2>
-            <div className="main-posts">
-                {favorites.slice(0, 3).map(post => <PostCard key={post._id} {...post}/>)}
-            </div>
-        </div>}
         <div className="main-line">
             <h2>Новые посты</h2>
             <div className="main-posts">
@@ -40,5 +28,17 @@ export default () => {
                 {popular.slice(0, 3).map(post => <PostCard key={post._id} {...post}/>)}
             </div>
         </div>
+        {userPosts.length > 0 && <div className="main-line">
+            <h2>Мои посты</h2>
+            <div className="main-posts">
+                {userPosts.slice(0, 3).map(post => <PostCard key={post._id} {...post}/>)}
+            </div>
+        </div>}
+        {favorites.length > 0 && <div className="main-line">
+            <h2>Любимые посты</h2>
+            <div className="main-posts">
+                {favorites.slice(0, 3).map(post => <PostCard key={post._id} {...post}/>)}
+            </div>
+        </div>}
     </div>
 }

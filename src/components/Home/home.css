@@ -1,14 +1,18 @@
 .home-start {
-    height: 100%;
+    margin-top: 400px;
+    height: calc(100% - 400px);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-size: 1.5rem;
+    position: relative;
 }
 .home-container {
+    margin-top: 400px;
     display: grid;
     gap: 60px;
+    position: relative;
 }
 .main-line {
     display: grid;
