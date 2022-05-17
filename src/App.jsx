@@ -12,6 +12,8 @@ export default () => {
     const [token, setToken] = useState(localStorage.getItem("token") || "");
     const [posts, setPosts] = useState([]);
     const [text, setText] = useState("");
+    const [authors, setAuthors] = useState([]);
+    const [tags, setTags] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [api, setApi] = useState(new Api(token));
     const [modalActive, setModalActive] = useState(false);
@@ -24,10 +26,23 @@ export default () => {
             api.getPosts()
                 .then(res => res.json())
                 .then(ans => {
-                    console.log(ans);
                     ans.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
                     setPosts(ans);
+                    let tgs = [];
+                    ans.forEach(p => {
+                        p.tags.forEach(t => {
+                            if (t) {
+                                if (!tgs.filter(tg => tg === t.trim().toLowerCase()).length) {
+                                    tgs.push(t.trim().toLowerCase());
+                                }
+                            }
+                        });
+                    })
+                    setTags(tgs);
                 })
+            api.getUsers()
+                .then(res => res.json())
+                .then(ans => setAuthors(ans));
         }
     }, [api]);
     return <>
@@ -43,10 +58,14 @@ export default () => {
             favorites: favorites,
             setFavorites: setFavorites,
             searchText: text,
+            authors: authors,
+            setAuthors: setAuthors,
             setSearchText: setText,
             setModalActive: setModalActive,
             setPopupActive: setPopupActive,
             api: api,
+            tags: tags,
+            setTags: setTags,
             path: "/leksas-blog/"
             // path: "/"
         }}>

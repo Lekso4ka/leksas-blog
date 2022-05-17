@@ -1,0 +1,33 @@
+.search {
+    position: relative;
+    width: 600px;
+    display: grid;
+}
+.search-container {
+    position: absolute;
+    box-sizing: border-box;
+    top: 40px;
+    width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: #fff;
+    box-shadow: 0 0 5px 0 #0006, 0 0 15px 0 #0004;
+    display: grid;
+    grid-template-columns: 70% 1fr;
+    gap: 20px;
+}
+.search-container>:first-child {
+    grid-row-end: span 2;
+}
+.search__block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.search__link {
+    cursor: pointer;
+}
+.search__link:hover {
+    color: blueviolet;
+}

@@ -2,11 +2,13 @@ import React, {useContext} from "react";
 import {Link} from "react-router-dom";
 import {Ctx} from "../../context";
 import "./header.css";
+import Search from "../Search";
 
 export default () => {
     const {userId, setModalActive, path} = useContext(Ctx);
     return <header className="header-container">
         <Link to={path} className="logo"><i className="bi bi-blockquote-right"/>Super Blog</Link>
+        <Search/>
         <nav className="header-container__navigation">
             {
                 userId && <>
